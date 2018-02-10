@@ -33,7 +33,9 @@ var List = React.createClass({
             style={styles.removeItem}
             onClick={this.props.remove.bind(null, index)}>
           </span>
-          <span style={styles.todoItem}>
+          <span
+            style={styles.todoItem}
+            onClick={this.props.update.bind(null, index)}>
             {item}
           </span>
         </li>

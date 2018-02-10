@@ -17,6 +17,12 @@ var removeItem = function(index){
   _store.list.splice(index, 1);
 }
 
+var updateItem = (index) => {
+  console.log("updateItem store, before", index, _store.list[index]);
+  _store.list[index] = "updated";
+  console.log("updateItem store, before", index, _store.list[index]);
+};
+
 var todoStore = objectAssign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
@@ -40,6 +46,10 @@ AppDispatcher.register(function(payload){
       removeItem(action.data);
       todoStore.emit(CHANGE_EVENT);
       break;
+    case appConstants.UPDATE_ITEM:
+      console.log("AppDispatcher appConstants.UPDATE_ITEM called", action.data);
+      updateItem(action.data);
+      todoStore.emit(CHANGE_EVENT);
     default:
       return true;
   }

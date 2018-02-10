@@ -13,7 +13,11 @@ var todoActions = {
       actionType: appConstants.REMOVE_ITEM,
       data: index
     })
-  }
+  },
+  updateItem: (index) => AppDispatcher.handleAction({
+    actionType: appConstants.UPDATE_ITEM,
+    data: index
+  })
 };
 
 module.exports = todoActions;

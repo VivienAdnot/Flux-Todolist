@@ -22,7 +22,12 @@ var ListContainer = React.createClass({
   handleRemoveItem: function(index){
     todoActions.removeItem(index);
   },
+  handleUpdateItem: (index) => {
+    console.log("handleUpdateItem called", index);
+    todoActions.updateItem(index)
+  },
   _onChange: function(){
+    console.log("ListContainer _onChange triggered");
     this.setState({
       list: todoStore.getList()
     })
@@ -33,7 +38,11 @@ var ListContainer = React.createClass({
         <div className="col-sm-12">
           <h3 className="text-center"> Todo List </h3>
           <AddItem add={this.handleAddItem}/>
-          <List items={this.state.list} remove={this.handleRemoveItem}/>
+          <List
+            items={this.state.list}
+            remove={this.handleRemoveItem}
+            update={this.handleUpdateItem}
+          />
         </div>
       </div>
     )
