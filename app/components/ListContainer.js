@@ -43,6 +43,7 @@ var ListContainer = React.createClass({
             remove={this.handleRemoveItem}
             update={this.handleUpdateItem}
           />
+          <h5>{this.state.list.length} item(s) left</h5>
         </div>
       </div>
     )

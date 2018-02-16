@@ -11,7 +11,7 @@
   "scripts": {
     "start": "npm run build && npm run dev-server",
     "build": "./node_modules/.bin/webpack",
-    "dev-server": "node_modules/.bin/http-server -p 3002 public/"
+    "dev-server": "node_modules/.bin/http-server -p 3000 public/"
   },
   "dependencies": {
     "axios": "^0.4.2",
