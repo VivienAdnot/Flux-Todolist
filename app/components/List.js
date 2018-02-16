@@ -1,7 +1,9 @@
 var React = require('react');
 
 var List = React.createClass({
+
   render: function(){
+
     var styles = {
       uList: {
         paddingLeft: 0,
@@ -21,23 +23,41 @@ var List = React.createClass({
         color: "rgb(222, 79, 79)"
       },
       todoItem: {
-        paddingLeft: 20,
-        fontSize: 17
+        marginLeft: 40,
+        fontSize: 17,
+        border: "1px solid blue"
+      },
+      toggleBtn: {
+        marginLeft: 40,
+        fontSize: 17,
+        border: "1px solid black"
       }
     };
+
     var listItems = this.props.items.map(function(item, index){
       return (
         <li key={index} className="list-group-item" style={styles.listGroup}>
           <span
             className="glyphicon glyphicon-remove"
             style={styles.removeItem}
-            onClick={this.props.remove.bind(null, index)}>
+            onClick={() => this.props.remove(index)}
+          >
           </span>
-          <span
+
+          <button
+            style={styles.toggleBtn}
+            onClick={() => this.props.toggle(index)}
+          >
+             {item.completed ? "completed" : "to do"}
+          </button>
+
+          <button
             style={styles.todoItem}
-            onClick={this.props.update.bind(null, index)}>
-            {item}
-          </span>
+            onClick={() => this.props.update(index)}
+          >
+            {item.title}
+          </button>
+
         </li>
       )
     }.bind(this));

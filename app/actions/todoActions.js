@@ -17,7 +17,11 @@ var todoActions = {
   updateItem: (index) => AppDispatcher.handleAction({
     actionType: appConstants.UPDATE_ITEM,
     data: index
-  })
+  }),
+  toggleItem: (index) => AppDispatcher.handleAction({
+    actionType: appConstants.TOGGLE_ITEM,
+    data: index
+  }),
 };
 
 module.exports = todoActions;

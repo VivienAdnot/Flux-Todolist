@@ -23,11 +23,12 @@ var ListContainer = React.createClass({
     todoActions.removeItem(index);
   },
   handleUpdateItem: (index) => {
-    console.log("handleUpdateItem called", index);
-    todoActions.updateItem(index)
+    todoActions.updateItem(index);
+  },
+  handleToggleItem: (index) => {
+    todoActions.toggleItem(index);
   },
   _onChange: function(){
-    console.log("ListContainer _onChange triggered");
     this.setState({
       list: todoStore.getList()
     })
@@ -42,6 +43,7 @@ var ListContainer = React.createClass({
             items={this.state.list}
             remove={this.handleRemoveItem}
             update={this.handleUpdateItem}
+            toggle={this.handleToggleItem}
           />
           <h5>{this.state.list.length} item(s) left</h5>
         </div>

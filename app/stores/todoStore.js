@@ -10,7 +10,10 @@ var _store = {
 };
 
 var addItem = function(item){
-  _store.list.push(item);
+  _store.list.push({
+    title: item,
+    completed: false
+  });
 };
 
 var removeItem = function(index){
@@ -18,10 +21,12 @@ var removeItem = function(index){
 }
 
 var updateItem = (index) => {
-  console.log("updateItem store, before", index, _store.list[index]);
-  _store.list[index] = "updated";
-  console.log("updateItem store, before", index, _store.list[index]);
+  _store.list[index].title = "updated";
 };
+
+var toggleItem = (index) => {
+  _store.list[index].completed = !_store.list[index].completed;
+}
 
 var todoStore = objectAssign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
@@ -47,9 +52,13 @@ AppDispatcher.register(function(payload){
       todoStore.emit(CHANGE_EVENT);
       break;
     case appConstants.UPDATE_ITEM:
-      console.log("AppDispatcher appConstants.UPDATE_ITEM called", action.data);
       updateItem(action.data);
       todoStore.emit(CHANGE_EVENT);
+      break;
+    case appConstants.TOGGLE_ITEM:
+      toggleItem(action.data);
+      todoStore.emit(CHANGE_EVENT);
+      break;
     default:
       return true;
   }
