@@ -28,6 +28,9 @@ var ListContainer = React.createClass({
   handleToggleItem: (index) => {
     todoActions.toggleItem(index);
   },
+  handleCompleteOrCancelAllItems: () => {
+    todoActions.completeOrCancelAllItems();
+  },
   _onChange: function(){
     this.setState({
       list: todoStore.getList()
@@ -46,6 +49,7 @@ var ListContainer = React.createClass({
             toggle={this.handleToggleItem}
           />
           <h5>{this.state.list.length} item(s) left</h5>
+          <button onClick={this.handleCompleteOrCancelAllItems}>Complete or Cancel All Items</button>
         </div>
       </div>
     )

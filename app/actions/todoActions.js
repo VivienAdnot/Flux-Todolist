@@ -22,6 +22,10 @@ var todoActions = {
     actionType: appConstants.TOGGLE_ITEM,
     data: index
   }),
+  completeOrCancelAllItems: () => AppDispatcher.handleAction({
+    actionType: appConstants.COMPLETE_OR_CANCEL_ALL_ITEMS,
+    data: null
+  })
 };
 
 module.exports = todoActions;

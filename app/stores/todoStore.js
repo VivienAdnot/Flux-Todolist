@@ -28,6 +28,15 @@ var toggleItem = (index) => {
   _store.list[index].completed = !_store.list[index].completed;
 }
 
+var completeOrCancelAllItems = () => {
+
+  if (_store.list.every(item => item.completed == true)) {
+    _store.list.forEach(item => item.completed = false);
+  } else {
+    _store.list.forEach(item => item.completed = true);
+  }
+}
+
 var todoStore = objectAssign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
@@ -59,6 +68,10 @@ AppDispatcher.register(function(payload){
       toggleItem(action.data);
       todoStore.emit(CHANGE_EVENT);
       break;
+    case appConstants.COMPLETE_OR_CANCEL_ALL_ITEMS:
+      completeOrCancelAllItems();
+      todoStore.emit(CHANGE_EVENT);
+      break
     default:
       return true;
   }
