@@ -25,6 +25,10 @@ var todoActions = {
   completeOrCancelAllItems: () => AppDispatcher.handleAction({
     actionType: appConstants.COMPLETE_OR_CANCEL_ALL_ITEMS,
     data: null
+  }),
+  updateShowItemStrategy: (strategy) => AppDispatcher.handleAction({
+    actionType: appConstants.UPDATE_SHOW_ITEM_STRATEGY,
+    data: strategy
   })
 };
 
