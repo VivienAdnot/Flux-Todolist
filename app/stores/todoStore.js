@@ -57,6 +57,10 @@ var updateShowItemStrategy = (strategy) => {
   _store.showItemStrategy = strategy;
 };
 
+var removeItemsCompleted = () => {
+  _store.list = _store.list.filter(item => item.completed == false);
+}
+
 var todoStore = objectAssign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
@@ -100,6 +104,11 @@ AppDispatcher.register(function(payload){
 
     case appConstants.UPDATE_SHOW_ITEM_STRATEGY:
       updateShowItemStrategy(action.data);
+      todoStore.emit(CHANGE_EVENT);
+      break;
+
+    case appConstants.REMOVE_ITEMS_COMPLETED:
+      removeItemsCompleted();
       todoStore.emit(CHANGE_EVENT);
       break;
 

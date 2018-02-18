@@ -29,6 +29,10 @@ var todoActions = {
   updateShowItemStrategy: (strategy) => AppDispatcher.handleAction({
     actionType: appConstants.UPDATE_SHOW_ITEM_STRATEGY,
     data: strategy
+  }),
+  removeItemsCompleted: () => AppDispatcher.handleAction({
+    actionType: appConstants.REMOVE_ITEMS_COMPLETED,
+    data: null
   })
 };
 

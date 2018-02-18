@@ -11,38 +11,53 @@ var ListContainer = React.createClass({
       list: todoStore.getList()
     }
   },
+
   componentDidMount: function(){
     todoStore.addChangeListener(this._onChange);
   },
+
   componentWillUnmount: function(){
     todoStore.removeChangeListener(this._onChange);
   },
+
   getActiveItemsCount: function() {
     return this.state.list.filter(item => item.completed == false).length;
   },
+
   handleAddItem: function(newItem){
     todoActions.addItem(newItem);
   },
+
   handleRemoveItem: function(index){
     todoActions.removeItem(index);
   },
+
   handleUpdateItem: (index) => {
     todoActions.updateItem(index);
   },
+
   handleToggleItem: (index) => {
     todoActions.toggleItem(index);
   },
+
   handleCompleteOrCancelAllItems: () => {
     todoActions.completeOrCancelAllItems();
   },
+
   handleUpdateShowItemStrategy: (strategy) => {
     todoActions.updateShowItemStrategy(strategy);
   },
+
+  handleClearItemsCompleted: () => {
+    todoActions.removeItemsCompleted();
+  },
+
   _onChange: function(){
     this.setState({
       list: todoStore.getList()
     })
   },
+
   render: function(){
     return (
       <div className="col-sm-6 col-md-offset-3">
@@ -65,6 +80,10 @@ var ListContainer = React.createClass({
             <button onClick={() => this.handleUpdateShowItemStrategy(showItemStrategies.ALL)}>all</button>
             <button onClick={() => this.handleUpdateShowItemStrategy(showItemStrategies.ACTIVE_ONLY)}>active</button>
             <button onClick={() => this.handleUpdateShowItemStrategy(showItemStrategies.COMPLETED_ONLY)}>completed</button>
+          </div>
+
+          <div>
+            <button onClick={this.handleClearItemsCompleted} >clear completed</button>
           </div>
         </div>
       </div>
