@@ -48,7 +48,7 @@ var List = React.createClass({
             style={styles.toggleBtn}
             onClick={() => this.props.toggle(index)}
           >
-             {item.completed ? "completed" : "to do"}
+             {item.completed ? "completed" : "active"}
           </button>
 
           <button
